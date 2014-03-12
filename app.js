@@ -6,16 +6,25 @@ for (var i = 0; i < 1000000; i++) {
   aList.push('item'+i);
 }
 
-function testLoop(){
-  _.forEach(aList, function(item){
-  //aList.forEach(function(item){
-    var test = item;
-    //console.log(item);
-  });
+function testLoDashForEach(type){
+  switch(type) {
+    case 'lodash':
+      _.forEach(aList, function(item){
+        var test = item;
+      });
+      break;
+    case 'native':
+      aList.forEach(function(item){
+        var test = item;
+      });
+      break;
+  }
 }
 
-console.time('test');
+console.time('LoDash forEach Test');
+testLoDashForEach('lodash');
+console.timeEnd('LoDash forEach Test');
 
-testLoop();
-
-console.timeEnd('test');
+console.time('Native forEach Test');
+testLoDashForEach('native');
+console.timeEnd('Native forEach Test');
