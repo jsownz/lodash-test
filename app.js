@@ -6,7 +6,7 @@ for (var i = 0; i < 1000000; i++) {
   aList.push('item'+i);
 }
 
-function testLoDashForEach(type){
+function testEach(type){
   switch(type) {
     case 'lodash':
       _.each(aList, function(item){
@@ -21,10 +21,33 @@ function testLoDashForEach(type){
   }
 }
 
-console.time('LoDash forEach Test');
-testLoDashForEach('lodash');
-console.timeEnd('LoDash forEach Test');
+function testContains(type){
+  switch(type) {
+    case 'lodash':
+      if ( _.contains(aList, "item990000") ) {
+        return true;
+      }
+      break;
+    case 'native':
+      if ( aList.indexOf("item990000") > -1 ) {
+        return true;
+      }
+      break;
+  }
+}
 
-console.time('Native forEach Test');
-testLoDashForEach('native');
-console.timeEnd('Native forEach Test');
+console.time('LoDash Each Test');
+testEach('lodash');
+console.timeEnd('LoDash Each Test');
+
+console.time('Native Each Test');
+testEach('native');
+console.timeEnd('Native Each Test');
+
+console.time('LoDash Contains Test');
+testContains('lodash');
+console.timeEnd('LoDash Contains Test');
+
+console.time('Native Contains Test');
+testContains('native');
+console.timeEnd('Native Contains Test');
