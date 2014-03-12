@@ -58,6 +58,19 @@ function testFilter(type){
   }
 }
 
+function testShuffle(type){
+  var aListCopy = aList;
+  switch(type) {
+    case 'lodash':
+      var shuffled = _.shuffle(aListCopy);
+      break;
+    case 'native':
+      for(var j, x, i = aListCopy.length; i; j = parseInt(Math.random() * i), x = aListCopy[--i], aListCopy[i] = aListCopy[j], aListCopy[j] = x);
+      var shuffled = aListCopy;
+      break;
+  }
+}
+
 console.time('LoDash Each Test');
 testEach('lodash');
 console.timeEnd('LoDash Each Test');
@@ -89,3 +102,11 @@ console.timeEnd('LoDash filter Test');
 console.time('Native filter Test');
 testFilter('native');
 console.timeEnd('Native filter Test');
+
+console.time('LoDash shuffle Test');
+testShuffle('lodash');
+console.timeEnd('LoDash shuffle Test');
+
+console.time('Native shuffle Test');
+testShuffle('native');
+console.timeEnd('Native shuffle Test');
