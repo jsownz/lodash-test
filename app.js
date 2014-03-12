@@ -6,15 +6,16 @@ for (var i = 0; i < 1000000; i++) {
   aList.push('item'+i);
 }
 
-var start = new Date().getTime();
+function someFunction(){
+  _.forEach(aList, function(item){
+  //aList.forEach(function(item){
+    var test = item;
+    //console.log(item);
+  });
+}
 
-_.forEach(aList, function(item){
-//aList.forEach(function(item){
-  var test = item;
-  //console.log(item);
-});
+console.time('test');
 
-var end = new Date().getTime();
-var time = end - start;
+someFunction();
 
-console.log(time);
+console.timeEnd('test');
