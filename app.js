@@ -36,6 +36,28 @@ function testContains(type){
   }
 }
 
+function testIndexOf(type){
+  switch(type) {
+    case 'lodash':
+      return _.indexOf(aList, "item990000");
+      break;
+    case 'native':
+      return aList.indexOf("item990000");
+      break;
+  }
+}
+
+function testFilter(type){
+  switch(type) {
+    case 'lodash':
+      var evens = _.filter(aList, function(num) { return num % 2 == 0; });
+      break;
+    case 'native':
+      var evens = aList.filter(function(num) { return num % 2 == 0; });
+      break;
+  }
+}
+
 console.time('LoDash Each Test');
 testEach('lodash');
 console.timeEnd('LoDash Each Test');
@@ -51,3 +73,19 @@ console.timeEnd('LoDash Contains Test');
 console.time('Native Contains Test');
 testContains('native');
 console.timeEnd('Native Contains Test');
+
+console.time('LoDash indexOf Test');
+testIndexOf('lodash');
+console.timeEnd('LoDash indexOf Test');
+
+console.time('Native indexOf Test');
+testIndexOf('native');
+console.timeEnd('Native indexOf Test');
+
+console.time('LoDash filter Test');
+testFilter('lodash');
+console.timeEnd('LoDash filter Test');
+
+console.time('Native filter Test');
+testFilter('native');
+console.timeEnd('Native filter Test');
