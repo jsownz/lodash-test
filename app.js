@@ -6,7 +6,7 @@ for (var i = 0; i < 1000000; i++) {
   aList.push('item'+i);
 }
 
-function someFunction(){
+function testLoop(){
   _.forEach(aList, function(item){
   //aList.forEach(function(item){
     var test = item;
@@ -16,6 +16,6 @@ function someFunction(){
 
 console.time('test');
 
-someFunction();
+testLoop();
 
 console.timeEnd('test');
